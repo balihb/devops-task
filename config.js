@@ -7,7 +7,7 @@ module.exports = {
     onboarding: true,
     onboardingConfigFileName: 'renovate.json5',
     platform: 'github',
-    repositories: ['balihb/devops-task-own'],
+    repositories: ['balihb/devops-task'],
     repositoryCache: 'enabled',
     hostRules: [
         {
