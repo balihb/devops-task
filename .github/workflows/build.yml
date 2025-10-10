@@ -101,13 +101,12 @@ jobs:
 
       - name: Calculate lables
         run: |
-          LOCAL_DOCKER_REPO_PREFIX="${{ steps.kind.outputs.LOCAL_REGISTRY }}/${{ github.repository }}"
-          LOCAL_DOCKER_REPO="${LOCAL_DOCKER_REPO_PREFIX}"
+          LOCAL_DOCKER_REPO="${{ steps.kind.outputs.LOCAL_REGISTRY }}/${{ github.repository }}"
           echo "LOCAL_DOCKER_REPO=${LOCAL_DOCKER_REPO}" >> $GITHUB_ENV
           echo "LOCAL_DOCKER_TAG=${LOCAL_DOCKER_REPO}:${{ steps.version.outputs.docker_version }}" >> $GITHUB_ENV
           echo "LOCAL_DOCKER_CACHE_TAG=${LOCAL_DOCKER_REPO}:cache" >> $GITHUB_ENV
-          GHCR_DOCKER_REPO_PREFIX="ghcr.io/${{ github.repository }}"
-          GHCR_DOCKER_REPO="${GHCR_DOCKER_REPO_PREFIX}"
+          GHCR_DOCKER_REPO="ghcr.io/${{ github.repository }}"
+          echo "GHCR_DOCKER_REPO=${GHCR_DOCKER_REPO}" >> $GITHUB_ENV
           echo "GHCR_DOCKER_TAG=${GHCR_DOCKER_REPO}:${{ steps.version.outputs.docker_version }}" >> $GITHUB_ENV
           echo "GHCR_DOCKER_LATEST_TAG=${GHCR_DOCKER_REPO}:latest" >> $GITHUB_ENV
           echo "GHCR_DOCKER_CACHE_TAG=${GHCR_DOCKER_REPO}:cache" >> $GITHUB_ENV
@@ -176,14 +175,12 @@ jobs:
           build-args: |
             APP_VERSION=${{ steps.version.outputs.version }}
 
-      - name: Configure Git
+      - name: Helm package
         if: github.event_name == 'release'
         run: |
-          git config user.name "$GITHUB_ACTOR"
-          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+          helm package ./charts/helloapp
 
-      - name: Run chart-releaser
-        uses: helm/chart-releaser-action@v1.7.0
+      - name: Helm push
         if: github.event_name == 'release'
-        env:
-          CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+        run: |
+          helm push helloapp-${{ steps.version.outputs.version }}.tgz oci://GHCR_DOCKER_REPO/helm-charts
