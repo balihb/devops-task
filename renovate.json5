@@ -56,5 +56,11 @@
         '.pre-commit-config.yaml',
       ],
     },
+    {
+      groupName: 'test',
+      matchFileNames: [
+        'requirements-test.txt',
+      ],
+    }
   ],
 }
