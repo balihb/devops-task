@@ -19,8 +19,8 @@ on:
       - 'requirements-test.txt'
       - 'requirements.txt'
       - 'sonar-project.properties'
-      - 'src'
-      - 'tests'
+      - 'src/**'
+      - 'tests/**'
       - 'tox.ini'
   workflow_dispatch:
 

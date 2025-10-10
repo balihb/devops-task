@@ -17,15 +17,15 @@ on:
       - '.dockerignore'
       - '.github/workflows/build.yml'
       - 'Dockerfile'
-      - 'charts'
+      - 'charts/**'
       - 'container-structure-test.yaml'
       - 'docker-entrypoint.sh'
       - 'mise.docker.toml'
       - 'pyproject.toml'
       - 'requirements-build.txt'
       - 'requirements.txt'
-      - 'src'
-      - 'tests'
+      - 'src/**'
+      - 'tests/**'
   workflow_dispatch:
 
 env:
