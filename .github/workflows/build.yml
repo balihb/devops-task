@@ -149,7 +149,7 @@ jobs:
         with:
           valueFile: 'charts/helloapp/Chart.yaml'
           propertyPath: 'version'
-          value: ${{ steps.version.outputs.docker_version }}
+          value: ${{ env.GitVersion_MajorMinorPatch }}
           commitChange: false
 
       - name: Set up chart-testing
@@ -158,7 +158,6 @@ jobs:
       - name: Run chart-testing (lint)
         env:
           VALIDATE_MAINTAINERS: 'false'
-          CHECK_VERSION_INCREMENT: 'false'
         run: ct lint --all --debug
 
       - name: Run chart-testing (install)
