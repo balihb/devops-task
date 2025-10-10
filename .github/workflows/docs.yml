@@ -12,10 +12,10 @@ on:
   pull_request:
     paths:
       - '.github/workflows/docs.yml'
-      - 'docs'
+      - 'docs/**'
       - 'pyproject.toml'
       - 'requirements-docs.txt'
-      - 'src'
+      - 'src/**'
   release:
     types: [released]
   workflow_dispatch:
