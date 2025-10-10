@@ -37,8 +37,8 @@ runs:
       id: actual_version
       shell: bash
       run: |
-        echo "version=${{ github.ref_name == 'main' && steps.gitversion.outputs.MajorMinorPatch || steps.gitversion.outputs.InformationalVersion }}" >> $GITHUB_OUTPUT
-        echo "docker_version=${{ github.ref_name == 'main' && steps.gitversion.outputs.MajorMinorPatch || format('{0}{1}', steps.gitversion.outputs.MajorMinorPatch, steps.gitversion.outputs.PreReleaseTag) }}" >> $GITHUB_OUTPUT
+        echo "version=${{ github.ref_name == github.event.repository.default_branch && steps.gitversion.outputs.MajorMinorPatch || steps.gitversion.outputs.InformationalVersion }}" >> $GITHUB_OUTPUT
+        echo "docker_version=${{ github.ref_name == github.event.repository.default_branch && steps.gitversion.outputs.MajorMinorPatch || format('{0}{1}', steps.gitversion.outputs.MajorMinorPatch, steps.gitversion.outputs.PreReleaseTag) }}" >> $GITHUB_OUTPUT
 
     - name: Set version
       shell: bash
