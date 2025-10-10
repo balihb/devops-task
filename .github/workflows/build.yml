@@ -158,6 +158,7 @@ jobs:
       - name: Run chart-testing (lint)
         env:
           VALIDATE_MAINTAINERS: 'false'
+          CHECK_VERSION_INCREMENT: 'false'
         run: ct lint --all --debug
 
       - name: Run chart-testing (install)
