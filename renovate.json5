@@ -1,62 +1,59 @@
-// Licensed under the P-EADCA Universal Waiver License (PUWL v2.0draft02)
-// See LICENSE.puwl in the project root for details.
-
 {
-  $schema: "https://docs.renovatebot.com/renovate-schema.json",
+  $schema: 'https://docs.renovatebot.com/renovate-schema.json',
   extends: [
-    "config:recommended",
-    ":configMigration",
-    ":enablePreCommit",
-    "customManagers:githubActionsVersions",
-    "customManagers:dockerfileVersions",
-    ":enableVulnerabilityAlerts",
-    ":label(kind/dependency-upgrade)",
+    'config:recommended',
+    ':configMigration',
+    ':enablePreCommit',
+    'customManagers:githubActionsVersions',
+    'customManagers:dockerfileVersions',
+    ':enableVulnerabilityAlerts',
+    ':label(kind/dependency-upgrade)',
   ],
   baseBranchPatterns: [
-    "$default",
+    '$default',
   ],
-  dependencyDashboardOSVVulnerabilitySummary: "all",
+  dependencyDashboardOSVVulnerabilitySummary: 'all',
   osvVulnerabilityAlerts: true,
   mise: {
     managerFilePatterns: [
-      "/(^|/)\\.?mise(\\..+)?\\.toml$/"
-    ]
+      '/(^|/)\\.?mise(\\..+)?\\.toml$/',
+    ],
   },
   customManagers: [
     {
-      customType: "regex",
+      customType: 'regex',
       managerFilePatterns: [
-        "/\\.sh$/"
+        '/\\.sh$/',
       ],
       matchStrings: [
-        "# renovate: datasource=(?<datasource>[a-z-.]+?) depName=(?<depName>[^\\s]+?)(?: (?:packageName)=(?<packageName>[^\\s]+?))?(?: versioning=(?<versioning>[a-z-0-9]+?))?(?: extractVersion=(?<extractVersion>[^\\s]+?))?\\s+[A-Za-z0-9_]+?_VERSION=[\"']?(?<currentValue>.+?)[\"']?\\s",
+        '# renovate: datasource=(?<datasource>[a-z-.]+?) depName=(?<depName>[^\\s]+?)(?: (?:packageName)=(?<packageName>[^\\s]+?))?(?: versioning=(?<versioning>[a-z-0-9]+?))?(?: extractVersion=(?<extractVersion>[^\\s]+?))?\\s+[A-Za-z0-9_]+?_VERSION=["\']?(?<currentValue>.+?)["\']?\\s',
       ],
     },
     {
-      "customType": "regex",
-      "managerFilePatterns": [
-        "/(^|/)tox\\.ini$/"
+      customType: 'regex',
+      managerFilePatterns: [
+        '/(^|/)tox\\.ini$/',
       ],
-      "matchStrings": [
-        "# renovate: datasource=(?<datasource>[a-z-.]+?) depName=(?<depName>[^\\s]+?)(?: packageName=(?<packageName>[^\\s]+?))?(?: versioning=(?<versioning>[a-z-0-9]+?))?(?: extractVersion=(?<extractVersion>[^\\s]+?))?\\s+(?<currentValue>\\d+\\.\\d+)\\s"
+      matchStrings: [
+        '# renovate: datasource=(?<datasource>[a-z-.]+?) depName=(?<depName>[^\\s]+?)(?: packageName=(?<packageName>[^\\s]+?))?(?: versioning=(?<versioning>[a-z-0-9]+?))?(?: extractVersion=(?<extractVersion>[^\\s]+?))?\\s+(?<currentValue>\\d+\\.\\d+)\\s',
       ],
-      "versioningTemplate": "regex:^(?<major>\\d)\\.(?<minor>\\d+)$"
+      versioningTemplate: 'regex:^(?<major>\\d)\\.(?<minor>\\d+)$',
     },
     {
-      "customType": "regex",
-      "fileMatch": [
-        "(^|/)tox\\.ini$"
+      customType: 'regex',
+      managerFilePatterns: [
+        '/(^|/)tox\\.ini$/',
       ],
-      "matchStrings": [
-        "# renovate: datasource=(?<datasource>[a-z-.]+?)(?: (?:packageName)=(?<packageName>[^\\s]+?))?(?: versioning=(?<versioning>[a-z-0-9]+?))?(?: extractVersion=(?<extractVersion>[^\\s]+?))?\\s+[\"']?(?<depName>@?[A-Za-z0-9_\\-\\/]+)[@><=~]+(?<currentValue>[^\"'\\s]+)[\"']?"
-      ]
-    }
+      matchStrings: [
+        '# renovate: datasource=(?<datasource>[a-z-.]+?)(?: (?:packageName)=(?<packageName>[^\\s]+?))?(?: versioning=(?<versioning>[a-z-0-9]+?))?(?: extractVersion=(?<extractVersion>[^\\s]+?))?\\s+["\']?(?<depName>@?[A-Za-z0-9_\\-\\/]+)[@><=~]+(?<currentValue>[^"\'\\s]+)["\']?',
+      ],
+    },
   ],
   packageRules: [
     {
-      groupName: "pre-commit-hooks",
+      groupName: 'pre-commit-hooks',
       matchFileNames: [
-        ".pre-commit-config.yaml"
+        '.pre-commit-config.yaml',
       ],
     },
   ],
