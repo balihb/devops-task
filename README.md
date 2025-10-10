@@ -1,9 +1,19 @@
 # Formlabs DevOps home assignment
 
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=balihb_devops-task&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=balihb_devops-task)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=balihb_devops-task&metric=bugs)](https://sonarcloud.io/summary/new_code?id=balihb_devops-task)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=balihb_devops-task&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=balihb_devops-task)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=balihb_devops-task&metric=coverage)](https://sonarcloud.io/summary/new_code?id=balihb_devops-task)
+[![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=balihb_devops-task&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=balihb_devops-task)
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=balihb_devops-task&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=balihb_devops-task)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=balihb_devops-task&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=balihb_devops-task)
+[![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=balihb_devops-task&metric=sqale_index)](https://sonarcloud.io/summary/new_code?id=balihb_devops-task)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=balihb_devops-task&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=balihb_devops-task)
+[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=balihb_devops-task&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=balihb_devops-task)
+
 This repository contains a home assignment code for DevOps applicants for Formlabs.
 
 See all open jobs at https://careers.formlabs.com/
-
 
 ## Task
 
@@ -21,3 +31,7 @@ See all open jobs at https://careers.formlabs.com/
 
 - Explain as much as possible in the commit message(s) and/or comments if needed. See more on commit messages [here](https://chris.beams.io/posts/git-commit/).
 - It would be great if you'd also write about why you choose a certain technology if there are alternatives to consider.
+
+## License
+
+This repository contains upstream code licensed under Apache-2.0 (see LICENSE) and newly added original work licensed under PUWL-2.0draft02 (see LICENSE.puwl).

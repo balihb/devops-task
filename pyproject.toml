@@ -1,0 +1,23 @@
+# Licensed under the P-EADCA Universal Waiver License (PUWL v2.0draft02)
+# See LICENSE.puwl in the project root for details.
+
+[build-system]
+requires = ["setuptools==80.9.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "helloapp"
+# renovate: datasource=docker depName=python
+requires-python = ">=3.13"
+readme = "README.md"
+description = "Example app"
+dynamic = ["version", "dependencies", "optional-dependencies"]
+
+[tool.setuptools.dynamic]
+version = { attr = "helloapp._version.__version__" }
+dependencies = { file = "requirements.txt" }
+
+[tool.deptry.per_rule_ignores]
+DEP002 = [
+    "gunicorn",
+]

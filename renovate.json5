@@ -1,0 +1,52 @@
+// Licensed under the P-EADCA Universal Waiver License (PUWL v2.0draft02)
+// See LICENSE.puwl in the project root for details.
+
+{
+    $schema: "https://docs.renovatebot.com/renovate-schema.json",
+    extends: [
+        "config:recommended",
+        ":configMigration",
+        ":enablePreCommit",
+        "customManagers:githubActionsVersions",
+        "customManagers:dockerfileVersions",
+        ":enableVulnerabilityAlerts",
+        ":label(kind/dependency-upgrade)",
+    ],
+    baseBranchPatterns: [
+        "$default",
+    ],
+    dependencyDashboardOSVVulnerabilitySummary: "all",
+    osvVulnerabilityAlerts: true,
+    mise: {
+      managerFilePatterns: ["/(^|/)\\.?mise(\\..+)?\\.toml$/"]
+    },
+    customManagers: [
+        {
+            customType: "regex",
+            managerFilePatterns: [
+                "/\\.sh$/"
+            ],
+            matchStrings: [
+                "# renovate: datasource=(?<datasource>[a-z-.]+?) depName=(?<depName>[^\\s]+?)(?: (?:packageName)=(?<packageName>[^\\s]+?))?(?: versioning=(?<versioning>[a-z-0-9]+?))?(?: extractVersion=(?<extractVersion>[^\\s]+?))?\\s+[A-Za-z0-9_]+?_VERSION=[\"']?(?<currentValue>.+?)[\"']?\\s",
+            ],
+        },
+        {
+            "customType": "regex",
+            "managerFilePatterns": [
+                "/(^|/)tox\\.ini$/"
+            ],
+            "matchStrings": [
+                "# renovate: datasource=(?<datasource>[a-z-.]+?) depName=(?<depName>[^\\s]+?)(?: packageName=(?<packageName>[^\\s]+?))?(?: versioning=(?<versioning>[a-z-0-9]+?))?(?: extractVersion=(?<extractVersion>[^\\s]+?))?\\s+(?<currentValue>\\d+\\.\\d+)\\s"
+            ],
+            "versioningTemplate": "regex:^(?<major>\\d)\\.(?<minor>\\d+)$"
+        },
+    ],
+    packageRules: [
+        {
+            groupName: "pre-commit-hooks",
+            matchFileNames: [
+                ".pre-commit-config.yaml"
+            ],
+        },
+    ],
+}

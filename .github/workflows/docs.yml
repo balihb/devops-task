@@ -1,0 +1,95 @@
+# Licensed under the P-EADCA Universal Waiver License (PUWL v2.0draft02)
+# See LICENSE.puwl in the project root for details.
+
+name: Docs
+
+on:
+  push:
+    branches:
+      - main
+    tags-ignore:
+      - '*.*.*'
+  pull_request:
+    paths:
+      - '.github/workflows/docs.yml'
+      - 'docs'
+      - 'pyproject.toml'
+      - 'requirements-docs.txt'
+      - 'src'
+  release:
+    types: [released]
+  workflow_dispatch:
+
+env:
+  # versions
+  # renovate: datasource=docker depName=python
+  PYTHON_VERSION: '3.13'
+
+  # generic
+  FORCE_COLOR: '1'
+  PIP_DISABLE_PIP_VERSION_CHECK: '1'
+  PIP_PROGRESS_BAR: 'off'
+  PYTHONUNBUFFERED: '1'
+  PY_COLORS: '1'
+  TERM: ansi
+
+  # cache
+  PIP_CACHE_DIR: ${{ github.workspace }}/.cache/pip
+  XDG_CACHE_HOME: ${{ github.workspace }}/.cache/xdg
+
+permissions: read-all
+
+jobs:
+  build:
+    permissions:
+      contents: read
+    runs-on: ubuntu-latest
+    steps:
+      - name: debug
+        run: |
+          echo ${{ github.event_name }}
+          echo ${{ github.event }}
+
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: '0'
+
+      - name: Get version
+        uses: ./.github/actions/get-version
+        id: version
+
+      - name: Cache docs
+        uses: actions/cache@v4
+        with:
+          path: |
+            ${{ env.PIP_CACHE_DIR }}
+            ${{ env.XDG_CACHE_HOME }}
+          key: docs-${{ env.PYTHON_VERSION }}${{ hashFiles('requirements-docs.txt') }}
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Install docs
+        run: pip install -r requirements-docs.txt
+
+      - name: Run docs
+        run: sphinx-build -b html docs docs/_build/html
+
+      - name: Upload static files as artifact
+        id: deployment
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: docs/_build/html
+
+  deploy:
+    permissions:
+      pages: write
+      id-token: write
+    runs-on: ubuntu-latest
+    needs: build
+    if: github.event_name == 'release'
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

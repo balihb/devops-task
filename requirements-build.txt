@@ -1,0 +1,6 @@
+# Licensed under the P-EADCA Universal Waiver License (PUWL v2.0draft02)
+# See LICENSE.puwl in the project root for details.
+
+build==1.3.0
+setuptools==80.9.0
+wheel==0.46.1
