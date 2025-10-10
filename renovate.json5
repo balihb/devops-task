@@ -45,7 +45,7 @@
         '/(^|/)tox\\.ini$/',
       ],
       matchStrings: [
-        '# renovate: datasource=(?<datasource>[a-z-.]+?)(?: (?:packageName)=(?<packageName>[^\\s]+?))?(?: versioning=(?<versioning>[a-z-0-9]+?))?(?: extractVersion=(?<extractVersion>[^\\s]+?))?\\s+["\']?(?<depName>@?[A-Za-z0-9_\\-\\/]+)[@><=~]+(?<currentValue>[^"\'\\s]+)["\']?',
+        '# renovate: datasource=(?<datasource>[a-z-.]+?)(?: (?:packageName)=(?<packageName>[^\\s]+?))?(?: versioning=(?<versioning>[a-z-0-9]+?))?(?: extractVersion=(?<extractVersion>[^\\s]+?))?\\s+["\']?(?<depName>@?[A-Za-z0-9_\\-\\/]+)(\\[[^\\s\\]]+\\])?[@><=~]+(?<currentValue>[^"\'\\s]+)["\']?',
       ],
     },
   ],
