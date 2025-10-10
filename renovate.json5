@@ -60,7 +60,6 @@
       groupName: 'test',
       matchFileNames: [
         'requirements-test.txt',
-        'tox.ini'
       ],
     }
   ],
