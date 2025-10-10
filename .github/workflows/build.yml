@@ -183,4 +183,4 @@ jobs:
       - name: Helm push
         if: github.event_name == 'release'
         run: |
-          helm push helloapp-${{ steps.version.outputs.version }}.tgz oci://${GHCR_DOCKER_REPO}/helm-charts
+          helm push helloapp-${{ steps.version.outputs.docker_version }}.tgz oci://${GHCR_DOCKER_REPO}/helm-charts
