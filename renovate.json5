@@ -61,6 +61,15 @@
       matchFileNames: [
         'requirements-test.txt',
       ],
+    },
+    {
+      groupName: 'test',
+      matchFileNames: [
+        'tox.ini',
+      ],
+      matchDepNames: [
+        'coverage'
+      ]
     }
   ],
 }
