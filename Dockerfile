@@ -5,7 +5,7 @@
 # renovate: datasource=docker depName=python
 ARG PYTHON_VERSION=3.13.7
 # renovate: datasource=docker depName=alpine
-ARG ALPINE_VERSION=3.22
+ARG ALPINE_VERSION=3.24
 FROM python:${PYTHON_VERSION}-alpine${ALPINE_VERSION} AS builder
 
 ARG APP_VERSION=0.0.0dev0
