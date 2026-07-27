@@ -2,6 +2,6 @@
 # See LICENSE.puwl in the project root for details.
 
 coverage==7.10.5
-pytest==8.4.1
+pytest==9.0.3
 pytest-cov==6.2.1
 pytest-html==4.1.1
