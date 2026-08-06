@@ -3,7 +3,7 @@
 
 # hadolint global ignore=DL3018
 # renovate: datasource=docker depName=python
-ARG PYTHON_VERSION=3.13.7
+ARG PYTHON_VERSION=3.14.7
 # renovate: datasource=docker depName=alpine
 ARG ALPINE_VERSION=3.22
 FROM python:${PYTHON_VERSION}-alpine${ALPINE_VERSION} AS builder
