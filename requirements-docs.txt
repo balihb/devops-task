@@ -4,4 +4,4 @@
 pydata-sphinx-theme==0.16.1
 sphinx==8.2.3
 sphinx-autoapi==3.6.1
-sphinx-autodoc-typehints==3.2.0
+sphinx-autodoc-typehints==3.13.6
